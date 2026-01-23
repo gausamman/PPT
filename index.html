@@ -16,7 +16,6 @@
 }
 
 
-
 #republic-intro {
     position: fixed;
     top: 0; left: 0;
@@ -28,19 +27,18 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    transition: opacity 1s ease-out;
+    transition: opacity 0.4s ease-out;
 }
-
 
 .intro-content {
     text-align: center;
-    animation: slideUpContent 1s ease-out forwards;
+    animation: slideUpContent 0.6s ease-out forwards;
     z-index: 10;
-    margin-top: 50px; 
+    margin-top: 80px; 
 }
 
 @keyframes slideUpContent {
-    from { transform: translateY(150px); opacity: 0; }
+    from { transform: translateY(80px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
 }
 
@@ -49,7 +47,6 @@
     margin-bottom: 15px;
     filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
 }
-
 
 .jet-container {
     position: absolute;
@@ -61,38 +58,38 @@
 
 .jet {
     position: absolute;
-    font-size: 28px;
+    font-size: 26px;
     color: #333;
-    animation: jetFly 4.5s linear forwards;
+    animation: jetFly 2.8s linear forwards;
     opacity: 0;
+    will-change: left;
 }
-
 
 .jet::after {
     content: '';
     position: absolute;
     top: 50%; right: 90%;
-    width: 600px;
-    height: 20px;
+    width: 800px;
+    height: 18px;
     transform: translateY(-50%);
     filter: blur(4px);
-    opacity: 1;
+    opacity: 0.8;
     border-radius: 50px;
 }
 
 
-.jet-saffron { top: 8%; animation-delay: 0.1s; }
+.jet-saffron { top: 4%; animation-delay: 0s; }
 .jet-saffron::after { background: #FF671F; } 
 
-.jet-white { top: 14%; animation-delay: 0.3s; }
+.jet-white { top: 9%; animation-delay: 0.15s; }
 .jet-white::after { background: #FFFFFF; box-shadow: 0 0 10px rgba(255,255,255,0.8); }
 
-.jet-green { top: 20%; animation-delay: 0.5s; }
+.jet-green { top: 14%; animation-delay: 0.3s; }
 .jet-green::after { background: #046A38; }
 
 @keyframes jetFly {
-    0% { left: -25%; opacity: 1; transform: rotate(5deg); }
-    100% { left: 130%; opacity: 1; transform: rotate(5deg); }
+    0% { left: -25%; opacity: 1; transform: rotate(0deg); }
+    100% { left: 120%; opacity: 1; transform: rotate(0deg); }
 }
 
 .welcome-msg h1 {
@@ -110,8 +107,7 @@
 }
 
 
-
-
+    
 body {
     background-color: var(--bg-gray);
     font-family: 'Mukta', sans-serif;
@@ -229,7 +225,7 @@ body {
                 <h1>HAPPY</h1>
                 <h1 style="color: #000080;">REPUBLIC DAY</h1>
                 <h2>जय हिन्द!</h2>
-                <p style="color: var(--text-green); font-weight: 800;">आपका स्वागत है</p>
+                <p style="color: var(--text-green); font-weight: 800;">Welcome Back</p>
             </div>
         </div>
     </div>
@@ -273,11 +269,14 @@ body {
 
     <script>
         window.addEventListener('load', function() {
+            // Speed badhane ke baad 3.1 seconds screen hatne ke liye perfect hai
             setTimeout(function() {
                 const intro = document.getElementById('republic-intro');
                 intro.style.opacity = '0';
-                setTimeout(() => { intro.style.display = 'none'; }, 1000);
-            }, 5500); 
+                setTimeout(() => { 
+                    intro.style.display = 'none'; 
+                }, 400);
+            }, 3100); 
         });
     </script>
 
