@@ -12,110 +12,101 @@
 :root {
     --text-green: #226d53;
     --saffron: #FF9933;
+    --red-theme: #c62828;
     --bg-gray: #f8f8f8;
 }
 
-
-#republic-intro {
+/* ==================================================== */
+/* 1. GAU SAMMAN INTRO */
+/* ==================================================== */
+#gau-intro {
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: linear-gradient(to bottom, #87CEEB 0%, #E3F2FD 100%);
+    background: #fff8e1; /* Light Divine Background */
     z-index: 9999;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    transition: opacity 0.4s ease-out;
+    transition: opacity 0.5s ease-out;
+}
+
+/* Poster Background Watermark */
+#gau-intro::before {
+    content: "";
+    position: absolute;
+    width: 100%; height: 100%;
+    background-image: url('https://lh3.googleusercontent.com/d/1_H_7rO9W-D0V5vY-U1Y-Z7-Z_Z-Z_Z_Z'); /* Placeholder for your image */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.15;
+    z-index: 1;
+}
+
+/* Petals Animation (Divinity Feel) */
+.petal {
+    position: absolute;
+    color: #ffccbc;
+    font-size: 20px;
+    animation: fall linear infinite;
+    top: -10%;
+    z-index: 5;
+}
+
+@keyframes fall {
+    to { transform: translateY(110vh) rotate(360deg); }
 }
 
 .intro-content {
     text-align: center;
-    animation: slideUpContent 0.6s ease-out forwards;
+    position: relative;
     z-index: 10;
-    margin-top: 80px; 
+    animation: slideUpContent 0.8s ease-out forwards;
 }
 
 @keyframes slideUpContent {
-    from { transform: translateY(80px); opacity: 0; }
+    from { transform: translateY(50px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
 }
 
 .intro-logo {
-    height: 110px;
-    margin-bottom: 15px;
-    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
-}
-
-.jet-container {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-}
-
-.jet {
-    position: absolute;
-    font-size: 26px;
-    color: #333;
-    animation: jetFly 2.8s linear forwards;
-    opacity: 0;
-    will-change: left;
-}
-
-.jet::after {
-    content: '';
-    position: absolute;
-    top: 50%; right: 90%;
-    width: 800px;
-    height: 18px;
-    transform: translateY(-50%);
-    filter: blur(4px);
-    opacity: 0.8;
-    border-radius: 50px;
-}
-
-
-.jet-saffron { top: 4%; animation-delay: 0s; }
-.jet-saffron::after { background: #FF671F; } 
-
-.jet-white { top: 9%; animation-delay: 0.15s; }
-.jet-white::after { background: #FFFFFF; box-shadow: 0 0 10px rgba(255,255,255,0.8); }
-
-.jet-green { top: 14%; animation-delay: 0.3s; }
-.jet-green::after { background: #046A38; }
-
-@keyframes jetFly {
-    0% { left: -25%; opacity: 1; transform: rotate(0deg); }
-    100% { left: 120%; opacity: 1; transform: rotate(0deg); }
+    height: 140px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
 }
 
 .welcome-msg h1 {
-    color: #FF671F;
-    font-size: 42px;
+    color: var(--red-theme);
+    font-size: 44px;
     margin: 0;
     font-weight: 800;
 }
 
 .welcome-msg h2 {
-    color: #046A38;
-    font-size: 26px;
+    color: #5d4037;
+    font-size: 24px;
     margin: 5px 0;
     font-weight: 700;
 }
 
+.welcome-msg p {
+    color: var(--text-green);
+    font-weight: 800;
+    font-size: 1.4rem;
+    margin-top: 15px;
+}
 
-    
+/* ==================================================== */
+/* 2. MAIN APP CONTENT */
+/* ==================================================== */
 body {
     background-color: var(--bg-gray);
     font-family: 'Mukta', sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center; 
+    margin: 0; padding: 0;
+    display: flex; justify-content: center; align-items: center; 
     min-height: 100vh;
 }
 
@@ -145,32 +136,11 @@ body {
     margin-bottom: 10px;
 }
 
-.brand-name {
-    color: var(--text-green);
-    font-size: 32px;
-    font-weight: 800;
-    margin: 0;
-    text-transform: uppercase;
-}
+.brand-name { color: var(--text-green); font-size: 32px; font-weight: 800; margin: 0; }
+.brand-sub { color: var(--text-green); font-size: 22px; font-weight: 700; margin-top: -5px; }
 
-.brand-sub {
-    color: var(--text-green);
-    font-size: 22px;
-    font-weight: 700;
-    margin-top: -5px;
-    text-transform: uppercase;
-}
-
-.content-area {
-    background: #fff;
-    padding: 20px;
-}
-
-.links-group {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
+.content-area { background: #fff; padding: 20px; }
+.links-group { display: flex; flex-direction: column; gap: 15px; }
 
 .nav-item {
     display: flex;
@@ -186,8 +156,8 @@ body {
 
 .nav-item:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
     border-color: var(--text-green);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
 }
 
 .nav-icon {
@@ -198,11 +168,7 @@ body {
     margin-right: 12px;
 }
 
-.nav-text {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--text-green);
-}
+.nav-text { font-size: 18px; font-weight: 600; color: var(--text-green); }
 
 @media (min-width: 768px) {
     .container { max-width: 480px; margin: 20px auto; }
@@ -212,20 +178,19 @@ body {
 
 <body>
 
-    <div id="republic-intro">
-        <div class="jet-container">
-            <div class="jet jet-saffron"><i class="fas fa-plane"></i></div>
-            <div class="jet jet-white"><i class="fas fa-plane"></i></div>
-            <div class="jet jet-green"><i class="fas fa-plane"></i></div>
-        </div>
-        
+    <div id="gau-intro">
+        <div class="petal" style="left:10%; animation-duration:5s;"><i class="fas fa-leaf"></i></div>
+        <div class="petal" style="left:30%; animation-duration:7s;"><i class="fas fa-leaf"></i></div>
+        <div class="petal" style="left:50%; animation-duration:6s;"><i class="fas fa-leaf"></i></div>
+        <div class="petal" style="left:70%; animation-duration:8s;"><i class="fas fa-leaf"></i></div>
+        <div class="petal" style="left:90%; animation-duration:4s;"><i class="fas fa-leaf"></i></div>
+
         <div class="intro-content">
             <img src="https://drive.google.com/thumbnail?id=1scerhEsZRhAR_CrL31KIQZNx83Vzlfhc&sz=w1000" alt="Logo" class="intro-logo">
             <div class="welcome-msg">
-                <h1>HAPPY</h1>
-                <h1 style="color: #000080;">REPUBLIC DAY</h1>
-                <h2>जय हिन्द!</h2>
-                <p style="color: var(--text-green); font-weight: 800;">Welcome Back</p>
+                <h1>गो सम्मान</h1>
+                <h2>आह्वान अभियान</h2>
+                <p>।। सेवा ।। सुरक्षा ।। सम्मान ।।</p>
             </div>
         </div>
     </div>
@@ -240,71 +205,74 @@ body {
         <div class="content-area">
             <div class="links-group">
                 
-             <a href="https://drive.google.com/file/d/1xhSA1_u7GkRzU9s_NdxxNI7mK_7TqxNX/view?usp=sharing" class="nav-item">
-              <i class="fas fa-image nav-icon"></i> 
-               <span class="nav-text">1. गो सम्मान लोगो</span>
-                 </a>
+                <a href="https://drive.google.com/file/d/1xhSA1_u7GkRzU9s_NdxxNI7mK_7TqxNX/view?usp=sharing" class="nav-item">
+                    <i class="fas fa-image nav-icon"></i> 
+                    <span class="nav-text">1. गो सम्मान लोगो</span>
+                </a>
 
-                 <a href="https://drive.google.com/file/d/1Ka6MK3pA9KpFR57v_T8gTGq1wC0MTOpL/view?usp=sharing" class="nav-item">
-                 <i class="fas fa-music nav-icon"></i> 
-                 <span class="nav-text">2. गो सम्मान गीत</span>
-                 </a>
+                <a href="https://drive.google.com/file/d/1Ka6MK3pA9KpFR57v_T8gTGq1wC0MTOpL/view?usp=sharing" class="nav-item">
+                    <i class="fas fa-music nav-icon"></i> 
+                    <span class="nav-text">2. गो सम्मान गीत</span>
+                </a>
 
-              <a href="https://youtu.be/zxMRBgzkAFQ" class="nav-item">
-                <i class="fas fa-film nav-icon"></i> 
+                <a href="https://youtu.be/zxMRBgzkAFQ" class="nav-item">
+                    <i class="fas fa-film nav-icon"></i> 
                     <span class="nav-text">3. गो सम्मान फिल्म</span>
-                       </a>
+                </a>
                 
                 <a href="https://docs.google.com/presentation/d/1XtO_ik_v8h51WeO9RBi7wG7SbYS6FGLlScainNXalig/edit?usp=sharing" class="nav-item">
                     <i class="fas fa-users-gear nav-icon"></i>
                     <span class="nav-text">4. कार्यकर्ता रचना</span>
                 </a>
+
                 <a href="https://docs.google.com/presentation/d/115_RQlGaD0jU3RLlwoXw2k03k4u4zSE2QsKRbtUlo2M/edit?usp=sharing" class="nav-item">
                     <i class="fas fa-note-sticky nav-icon"></i>
                     <span class="nav-text">5. प्रचार सामग्री एवं प्रचार</span>
                 </a>
+
                 <a href="https://docs.google.com/presentation/d/1IHjW9Mgs4mIhunEojzwqw7RyURqYd3rTsxEgTKkBuf8/edit?usp=sharing" class="nav-item">
                     <i class="fas fa-calendar-check nav-icon"></i>
                     <span class="nav-text">6. 27 अप्रैल कार्य योजना</span>
                 </a>
+
                 <a href="https://docs.google.com/presentation/d/1LVCdT34AAfkwCRp1CmLpRJJLsXCMEAmLL_RWuW5NC9s/edit?usp=sharing" class="nav-item">
                     <i class="fas fa-address-book nav-icon"></i>
                     <span class="nav-text">7. संपर्क टीम</span>
                 </a>
+
                 <a href="https://docs.google.com/presentation/d/1Zu21hIV82nUO5f7h65kWM7P74JggUEOtCAY2ZpSZ_HM/edit?usp=sharing" class="nav-item">
                     <i class="fas fa-shirt nav-icon"></i>
                     <span class="nav-text">8. वस्त्रभूषा</span>
                 </a>
+
                 <a href="https://docs.google.com/presentation/d/18sftJ8n-zjkt7HyaEVYQ5w0ppm81yye_xINKSe4eChU/edit?usp=sharing" class="nav-item">
                     <i class="fas fa-user-tie nav-icon"></i> 
                     <span class="nav-text">9. राज्य प्रचारक</span>
                 </a>
 
                 <a href="https://docs.google.com/presentation/d/1-0IvVLLQKc89s1JJTjgeMEcCoywcZ4xf-_Z7j_32t-s/edit?usp=sharing" class="nav-item">
-    <i class="fas fa-users-rectangle nav-icon"></i> 
-    <span class="nav-text">10. प्रचारक बैठक क्रम</span>
-</a>
+                    <i class="fas fa-users-rectangle nav-icon"></i> 
+                    <span class="nav-text">10. प्रचारक बैठक क्रम</span>
+                </a>
           
-            <a href="https://docs.google.com/presentation/d/1iEPJjVostJm7sXWi1NC4WxhssD9hJXTO_Ge16PsCCaQ/edit?usp=sharing" class="nav-item">
-    <i class="fas fa-file-signature nav-icon"></i> 
-    <span class="nav-text">11. प्रार्थना पत्र देने का क्रम</span>
-</a>
-
-            
+                <a href="https://docs.google.com/presentation/d/1iEPJjVostJm7sXWi1NC4WxhssD9hJXTO_Ge16PsCCaQ/edit?usp=sharing" class="nav-item">
+                    <i class="fas fa-file-signature nav-icon"></i> 
+                    <span class="nav-text">11. प्रार्थना पत्र देने का क्रम</span>
+                </a>
             </div>
         </div>
     </div>
 
     <script>
         window.addEventListener('load', function() {
-            // Speed badhane ke baad 3.1 seconds screen hatne ke liye perfect hai
+            // Intro hides after 3.5 seconds
             setTimeout(function() {
-                const intro = document.getElementById('republic-intro');
+                const intro = document.getElementById('gau-intro');
                 intro.style.opacity = '0';
                 setTimeout(() => { 
                     intro.style.display = 'none'; 
-                }, 400);
-            }, 3100); 
+                }, 500);
+            }, 3500); 
         });
     </script>
 
